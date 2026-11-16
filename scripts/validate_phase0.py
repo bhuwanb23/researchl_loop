@@ -20,7 +20,7 @@ sys.path.insert(0, str(ROOT / "backend"))
 
 import pandas as pd  # noqa: E402
 
-from app.quality import audit_dataset, clean_dataset, diversity  # noqa: E402
+from app.engine.quality import audit_dataset, clean_dataset, diversity  # noqa: E402
 
 SCOPE_CONTRACT_FIELDS = {"research_type", "variables", "suggested_rows", "data_plan", "dataset_name"}
 TEMPLATE_FIELDS = SCOPE_CONTRACT_FIELDS | {"id", "question", "refinements"}
@@ -54,7 +54,7 @@ def check_templates() -> list[str]:
 
 def check_engine() -> list[str]:
     """Every metric function must be importable and callable."""
-    from app import quality
+    from app.engine import quality
     errors = []
     for fn in ("duplicate_rate", "near_duplicate_rate", "diversity", "completeness",
                "label_coverage", "distribution_sanity", "audit_dataset", "clean_dataset"):

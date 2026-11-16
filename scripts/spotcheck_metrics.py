@@ -22,7 +22,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "backend"))
 
 import pandas as pd  # noqa: E402
 
-from app import quality  # noqa: E402
+from app.engine import quality  # noqa: E402
 
 
 def main() -> int:

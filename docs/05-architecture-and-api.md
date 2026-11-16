@@ -16,22 +16,24 @@ researchloop/
 │   └── 06-preflight-and-acceptance.md
 ├── backend/
 │   ├── requirements.txt
-│   ├── app/
-│   │   ├── main.py               # FastAPI app, routes, static serving
-│   │   ├── config.py             # env loading
-│   │   ├── schemas.py            # Pydantic data contracts (matches §Data contracts)
-│   │   ├── llm.py                # LLM client + MockLLM
-│   │   ├── adaption.py           # Adaption adapter + emulation fallback
-│   │   ├── quality.py            # audit engine (dedup, diversity, completeness…)
-│   │   ├── receipt.py            # disclosure receipt builder
-│   │   └── services.py           # orchestration: scope → invent → augment → audit → export
-│   └── tests/
-│       └── test_quality.py       # metrics smoke tests (run pre-build)
-├── frontend/                     # Next.js app or static SPA (day-1 decision)
+│   ├── app/                      # package-organized API (reorganized in the UI redesign pass)
+│   │   ├── main.py               # FastAPI composition root: app wiring + static mount
+│   │   ├── api/routes.py         # HTTP layer — the /api contract below
+│   │   ├── services/services.py  # orchestration: scope → invent → augment → audit → export → receipt
+│   │   ├── engine/quality.py     # audit engine (dedup, diversity, completeness…)
+│   │   ├── ai/llm.py             # LLM client + MockLLM
+│   │   ├── ai/adaption.py        # Adaption adapter + emulation fallback
+│   │   ├── ai/receipt.py         # disclosure receipt builder
+│   │   └── core/                 # config, schemas (Pydantic contracts), storage (persistence)
+│   └── tests/                    # 74 tests (mock-mode baseline; 1 real-mode skip)
+├── frontend/                     # static SPA (day-1 decision): Ask → Build → Audit → Receipt → Export
+│   ├── index.html                # shell: topbar, pipeline arc, view host
+│   ├── css/                      # tokens.css (design system) · base.css · components.css
+│   └── js/                       # main.js (router) · api.js · ui.js · stepper.js · views/ (per-screen)
 ├── data/
 │   ├── templates/                # F10 demo scenarios (JSON)
 │   └── samples/                  # demo CSVs for augmentation path
-├── scripts/                       # utility scripts (seed demo data, demo flow)
+├── scripts/                       # utility scripts (E2E, spot-check, demo capture)
 └── assets/                        # screenshots, demo video, receipt samples (submission assets)
 ```
 
@@ -131,7 +133,11 @@ All endpoints under `/api`, JSON in/out, session identified by `session_id` (UUI
 { "files": {"dataset.csv": "url", "receipt.json": "url", "methodology.md": "url"} }
 ```
 
-## Data contracts (schemas.py — Pydantic)
+### 7. `GET /api/samples/{filename}` — demo helper (added in the UI redesign pass)
+Serves the demo CSVs from `data/samples/` (read-only, `.csv` only) so the augment screen can
+offer one-click samples without bundling file-picker steps in the demo.
+
+## Data contracts (core/schemas.py — Pydantic)
 - `ScopeResult`, `DatasetRow` (`provenance: enum{synthetic, original, augmented}`), `Dataset`,
   `AuditReport`, `Receipt`, `ReceiptField` — mirror the JSON above exactly.
 - **Provenance is mandatory** on every row — the UI refuses to render a dataset without it.

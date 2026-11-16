@@ -3,13 +3,13 @@
 **Project:** ResearchLoop (ML Empowerment Build Challenge 4.0)
 **Deadline:** Dec 1, 2026, 9:00 PM PT (submit buffer day) · **Winners:** Dec 10
 **Sponsors:** Adaption Labs · Rise Research · **Organizer:** ML Empowerment Foundation
-**Stack:** FastAPI + pandas/scikit-learn + OpenAI-compatible LLM (MockLLM fallback) + Adaption adapter + Next.js or static SPA frontend
+**Stack:** FastAPI + pandas/scikit-learn + OpenAI-compatible LLM (MockLLM fallback) + Adaption adapter + static SPA frontend (vanilla HTML/CSS/JS, no build step)
 
 ---
 
 ## 1. How to use this folder
 
-Every phase file (`phase_0.md` … `phase_6.md`) is self-contained and structured the same way:
+Every phase file (`phase_0.md` … `phase_7.md`) is self-contained and structured the same way:
 
 | Section | What it contains |
 |---|---|
@@ -37,6 +37,7 @@ Every phase file (`phase_0.md` … `phase_6.md`) is self-contained and structure
 | **4** | Frontend | 8–11 | ✅ Complete | 5 screens: Ask → Build → Audit → Receipt → Export (static SPA, no build step) |
 | **5** | Integration, Testing & Demo Assets | 11–14 | ✅ Complete | E2E (mock+augment), spot-check, usability run, demo video, 7 screenshots, receipt sample |
 | **6** | Submission & Final Validation | 14–16 | ✅ Complete | Rubric-aligned Devpost submission package, README, final checklist, submission record |
+| **7** | UI Redesign + File Organization | post-6 | ✅ Complete | astryx-inspired dark design system (pipeline arc, verified-document receipt), backend + frontend sub-folder hierarchies, refreshed demo assets |
 
 ## 3. Feature → phase mapping (the tracking matrix)
 

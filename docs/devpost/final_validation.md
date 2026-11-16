@@ -54,11 +54,14 @@
 
 ## Automated evidence (run 2026-11-16)
 
-- `pytest tests/ -q` → **73 passed, 1 skipped** (skip = real-mode test; no key).
+- `pytest tests/ -q` → **74 passed, 1 skipped** (skip = real-mode test; no key).
 - `scripts/e2e_mock.py` → **ALL 3 TEMPLATES PASS**.
 - `scripts/e2e_augment.py` → **ALL SAMPLES PASS** (completeness 0.917→1.000; duplicates 0.167→0.000).
 - `scripts/spotcheck_metrics.py` → **ALL METRICS MATCH HAND CALCULATION**.
-- Assets verified present & non-empty: demo_video.webm (2.0 MB), receipt_sample.json,
-  7 screenshots, README.md, docs/devpost/submission.md.
+- Assets verified present & non-empty: demo_video.webm (3.1 MB, refreshed for the Phase 7 UI
+  redesign), receipt_sample.json, 7 screenshots (redesigned UI), README.md,
+  docs/devpost/submission.md.
+- **Phase 7 redesign validation:** full Playwright walkthrough of all 5 screens + augment
+  sample passes with zero console errors; UI fully functional offline in mock mode.
 - Receipt honesty gates verified on the sample: sources empty · oversight `prompt_guided` · hash present.
 - Submission-copy honesty grep: no real-mode claim without the "implemented, not claimed" qualifier.

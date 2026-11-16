@@ -5,6 +5,7 @@
   - screenshots: assets/screenshots/*.png
 
 Runs the template-only, zero-key flow: Ask → Build → Audit → Receipt → Export.
+Updated for the redesigned UI (pipeline arc + organized frontend structure).
 
 Usage:  python3 scripts/capture_demo.py [--base http://127.0.0.1:8000]
 """
@@ -53,63 +54,61 @@ def main() -> int:
 
         # ---------- Screen 1: Ask ----------
         page.goto(base + "/", wait_until="networkidle")
-        pause(1.5)
-        page.click("text=Study vs. scores")
-        page.wait_for_selector("#plan-card", state="visible", timeout=15000)
-        # simulate a student edit (contributes to the F11 log)
-        page.fill("#plan-plan", "Generate synthetic student records with study hours, prior GPA, sleep hours, and exam score; score band as target.")
+        pause(1.2)
+        # template chip fills the question and refines it
+        page.click("[data-template='study_vs_scores']")
+        page.wait_for_selector("[data-refinement]", state="visible", timeout=15000)
+        # pick the first refinement option → moves to Build
+        page.click("[data-refinement] >> nth=0")
+        page.wait_for_selector("#btn-invent", timeout=15000)
         pause(2.0)
-        mark("Ask: template picked + plan shown")
+        mark("Ask: template picked + refinement shown")
         page.screenshot(path=str(SHOTS / "01_ask_plan.png"), full_page=True)
 
-        # ---------- Screen 2: Build ----------
-        page.click("#btn-goto-build")
-        page.wait_for_selector("#screen-build:not([hidden])")
-        pause(1.5)
+        # ---------- Screen 2: Build — invent ----------
+        page.wait_for_selector("#btn-invent", timeout=15000)
         page.click("#btn-invent")
-        page.wait_for_selector("#dataset-panel:not([hidden])", timeout=30000)
-        page.wait_for_function(
-            "document.querySelector('#ds-counts').textContent.includes('synthetic')", timeout=10000)
-        pause(2.0)
+        page.wait_for_selector("#btn-to-audit", state="visible", timeout=30000)
+        pause(1.8)
         mark("Build: dataset invented + preview shown")
         page.screenshot(path=str(SHOTS / "02_build_invent.png"), full_page=True)
 
         # ---------- Screen 3: Audit ----------
-        page.click("#btn-goto-audit")
-        page.wait_for_selector("#audit-grid .metric-card", timeout=30000)
-        pause(2.5)  # hero shot: before/after charts
+        page.click("#btn-to-audit")
+        page.wait_for_selector(".metric-grid .metric", timeout=30000)
+        pause(2.5)  # hero shot: before/after bars + donut
         mark("Audit: before/after charts rendered")
         page.screenshot(path=str(SHOTS / "03_audit_before_after.png"), full_page=True)
 
         # ---------- Screen 4: Receipt ----------
-        page.click("#btn-goto-receipt")
-        page.wait_for_selector("#receipt-card .receipt-section", timeout=30000)
+        page.click("#btn-receipt")
+        page.wait_for_selector(".receipt-doc .receipt-seal", timeout=30000)
         pause(2.0)
-        mark("Receipt: fields + contribution log rendered")
+        mark("Receipt: verified document rendered")
         page.screenshot(path=str(SHOTS / "04_receipt.png"), full_page=True)
-        # variant switch (F8)
+        # variant selector (F8) — re-sign as teacher-check
         page.select_option("#variant-select", "teacher-check")
-        page.wait_for_selector("#receipt-card .receipt-section", timeout=10000)
+        page.wait_for_function(
+            "document.querySelector('.receipt-title .badge')?.textContent.includes('teacher-check')",
+            timeout=15000,
+        )
         pause(1.5)
-        mark("Receipt: teacher-check variant rendered")
-        page.screenshot(path=str(SHOTS / "05_receipt_teacher_check.png"), full_page=True)
+        mark("Receipt: teacher-check variant re-signed")
+        page.screenshot(path=str(SHOTS / "05_receipt_variant.png"), full_page=True)
 
         # ---------- Screen 5: Export ----------
-        page.click("#btn-goto-export")
-        page.wait_for_selector("#export-files .file-card", timeout=30000)
-        page.wait_for_selector("#closing-card:not([hidden])", timeout=10000)
+        page.click("#btn-export")
+        page.wait_for_selector(".metric-grid, .screen-head", timeout=30000)
+        page.wait_for_selector("#btn-all", timeout=30000)
         pause(2.0)
-        mark("Export: package + summary rendered")
+        mark("Export: package files rendered")
         page.screenshot(path=str(SHOTS / "06_export.png"), full_page=True)
 
-        # ---------- screenshot for augment path (bonus, uses sample CSV) ----------
-        page.click(".step[data-route='build']")
-        page.wait_for_selector("#screen-build:not([hidden])")
-        page.click("text=Augment a CSV")
-        pause(1.2)
-        page.set_input_files("#augment-file", str(ROOT / "data/samples/messy_study_survey.csv"))
-        page.click("#btn-augment")
-        page.wait_for_selector("#dataset-panel:not([hidden])", timeout=30000)
+        # ---------- bonus: augment path via sample chip ----------
+        page.click(".pipe-node:has-text('Build')")
+        page.wait_for_selector("[data-sample]", timeout=15000)
+        page.click("[data-sample='messy_study_survey.csv']")
+        page.wait_for_selector("#btn-to-audit-b", state="visible", timeout=30000)
         pause(1.5)
         page.screenshot(path=str(SHOTS / "07_build_augment.png"), full_page=True)
         mark("Build: augment path (messy CSV) rendered")

@@ -58,7 +58,7 @@ flow, works fully offline, and requires no ML background.
 
 ## 6.4 Description — Key Features
 
-All features below are implemented, tested (73 automated tests + scripted E2E), and running.
+All features below are implemented, tested (74 automated tests + scripted E2E), and running.
 
 - **F1 · Question → Scope** — a rough question becomes a structured research plan: type,
   variables, row count, data plan, with editable fields and refinement suggestions.
@@ -106,7 +106,12 @@ All features below are implemented, tested (73 automated tests + scripted E2E), 
   student work against — the receipt doubles as an assessment artifact.
 
 The design goal is zero-ML-background onboarding: pick a template, follow five screens,
-download a package.
+download a package. The interface is a custom dark design system (inspired by Meta's
+astryx) built around two signature elements: a **pipeline arc** that lights up the
+research journey step by step, and a **verified-document receipt** — a perforated,
+hash-sealed certificate that makes data disclosure feel real rather than cosmetic. A
+persistent mode chip states whether the run is in mock or live mode, so the demo's
+honesty is always visible.
 
 ## 6.7 Description — Social Impact
 
@@ -134,7 +139,7 @@ three engine metrics against hand calculation (`scripts/spotcheck_metrics.py`).
 - **Live demo:** run `uvicorn app.main:app` (see README) — no keys required
 - **Demo video:** `assets/demo_video.webm` (Ask → Build → Audit hero shot → Receipt → Export)
 - **Screenshots:** `assets/screenshots/01_ask_plan.png`, `02_build_invent.png`,
-  `03_audit_before_after.png` (hero), `04_receipt.png`, `05_receipt_teacher_check.png`,
+  `03_audit_before_after.png` (hero), `04_receipt.png`, `05_receipt_variant.png`,
   `06_export.png`, `07_build_augment.png`
 - **Receipt sample:** `assets/receipt_sample.json` (exactly as the API produces it)
 - **Documentation:** `docs/` (research, literature review, API contract, per-phase plans with
