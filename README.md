@@ -97,7 +97,7 @@ FastAPI backend (backend/app/)
 
 ```bash
 cd backend
-.venv/bin/python -m pytest tests/ -q          # 73 tests (mock-mode baseline; 1 real-mode skip)
+.venv/bin/python -m pytest tests/ -q          # 74 tests (mock-mode baseline; 1 real-mode skip)
 
 # scripted end-to-end + verification (server running on :8000)
 python3 scripts/e2e_mock.py        # full flow, 3 templates
@@ -110,14 +110,30 @@ python3 scripts/capture_demo.py     # records demo video + screenshots (Playwrig
 
 ```
 researchloop/
-├── backend/           FastAPI app + tests (Phases 1–3)
-├── frontend/          static SPA: Ask → Build → Audit → Receipt → Export (Phase 4)
-├── data/templates/    3 demo scenarios (F10)
-├── data/samples/      messy demo CSVs for the augment path
-├── scripts/           E2E, spot-check, demo capture, demo script
-├── assets/            demo video, screenshots, receipt sample (submission assets)
-└── docs/              research, literature, design docs + per-phase plans
+├── backend/                   FastAPI app + tests (Phases 1–3)
+│   └── app/                   package-organized API (reorganized: UI redesign pass)
+│       ├── main.py            composition root: app wiring + static mount
+│       ├── api/               HTTP layer — routes.py (the /api contract)
+│       ├── services/          orchestration: scope, invent, augment, export, receipts
+│       ├── engine/            quality/audit metrics (real pandas computations)
+│       ├── ai/                LLM layer (real + mock), Adaption adapter, receipt builder
+│       └── core/              config, schemas (data contracts), storage (persistence)
+├── frontend/                  static SPA: Ask → Build → Audit → Receipt → Export (Phase 4, redesigned)
+│   ├── index.html             app shell: topbar, pipeline arc, view host
+│   ├── css/                   tokens.css (design system) · base.css · components.css
+│   └── js/                    main.js (router) · api.js · ui.js · stepper.js · views/ (one module per screen)
+├── data/templates/            3 demo scenarios (F10)
+├── data/samples/              messy demo CSVs for the augment path
+├── scripts/                   E2E, spot-check, demo capture, demo script
+├── assets/                   demo video, screenshots, receipt sample (submission assets)
+└── docs/                     research, literature, design docs + per-phase plans
 ```
+
+**Design:** the UI is a Meta/astryx-inspired dark design system — a tokenized neutral
+surface scale, subtle elevation, blue→violet accent gradient, tabular numerals — with a
+signature **pipeline arc** stepper (Ask → Build → Audit → Receipt → Export) where the active
+node glows and completed segments light up, plus a **verified-document receipt panel** with
+perforation separators and an integrity seal.
 
 ## Status & honesty notes
 

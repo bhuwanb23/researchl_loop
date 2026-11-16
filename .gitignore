@@ -11,8 +11,10 @@ venv/
 .env.*
 !.env.example
 
-# Data & session artifacts
+# Data & session 
+
 data/sessions/
+backend/data/sessions/
 data/samples/*.csv
 !data/samples/.gitkeep
 # keep the demo CSVs tracked (needed by scripts/e2e_augment.py and the augment demo)

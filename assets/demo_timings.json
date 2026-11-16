@@ -1,9 +1,9 @@
 {
-  "Ask: template picked + plan shown": 4.23,
-  "Build: dataset invented + preview shown": 8.04,
-  "Audit: before/after charts rendered": 10.76,
-  "Receipt: fields + contribution log rendered": 13.0,
-  "Receipt: teacher-check variant rendered": 14.67,
-  "Export: package + summary rendered": 16.96,
-  "Build: augment path (messy CSV) rendered": 20.19
+  "Ask: template picked + refinement shown": 4.13,
+  "Build: dataset invented + preview shown": 6.23,
+  "Audit: before/after charts rendered": 9.13,
+  "Receipt: verified document rendered": 11.48,
+  "Receipt: teacher-check variant re-signed": 13.38,
+  "Export: package files rendered": 15.82,
+  "Build: augment path (messy CSV) rendered": 17.99
 }
