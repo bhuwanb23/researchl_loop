@@ -1,0 +1,67 @@
+/* ==========================================================================
+   ResearchLoop design tokens — Meta/astryx-inspired dark design system.
+   Refined neutral surfaces, precise elevation, blue→violet accent gradient,
+   tabular numerals, restrained motion. Everything is a token; no magic values.
+   ========================================================================== */
+
+:root {
+  /* ---- surfaces (dark neutral scale) ---- */
+  --bg: #0a0c10;
+  --bg-2: #0e1117;
+  --surface: #12151c;
+  --surface-2: #171b23;
+  --surface-3: #1e232d;
+  --border: #262d3a;
+  --border-strong: #364154;
+
+  /* ---- text ---- */
+  --text: #e9ecf2;
+  --text-2: #a6aec0;
+  --text-3: #6e7789;
+
+  /* ---- accent (Meta blue → violet gradient) ---- */
+  --accent: #2e6bff;
+  --accent-2: #7b5cff;
+  --accent-grad: linear-gradient(135deg, #2e6bff 0%, #7b5cff 100%);
+  --accent-soft: rgba(46, 107, 255, 0.12);
+  --accent-soft-2: rgba(123, 92, 255, 0.14);
+
+  /* ---- status ---- */
+  --success: #33c77b;
+  --success-soft: rgba(51, 199, 123, 0.12);
+  --warn: #f5a623;
+  --warn-soft: rgba(245, 166, 35, 0.12);
+  --danger: #ff5c5c;
+  --danger-soft: rgba(255, 92, 92, 0.12);
+
+  /* ---- provenance ---- */
+  --prov-synthetic: #2e6bff;
+  --prov-synthetic-soft: rgba(46, 107, 255, 0.13);
+  --prov-original: #33c77b;
+  --prov-original-soft: rgba(51, 199, 123, 0.13);
+  --prov-augmented: #9b6cff;
+  --prov-augmented-soft: rgba(155, 108, 255, 0.13);
+
+  /* ---- geometry ---- */
+  --radius-sm: 8px;
+  --radius: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+  --ring: 0 0 0 3px rgba(46, 107, 255, 0.22);
+
+  /* ---- elevation ---- */
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.4), 0 4px 14px rgba(0, 0, 0, 0.28);
+  --shadow-2: 0 10px 30px rgba(0, 0, 0, 0.45);
+  --shadow-glow: 0 0 24px rgba(46, 107, 255, 0.28);
+
+  /* ---- motion ---- */
+  --t-fast: 120ms cubic-bezier(0.4, 0, 0.2, 1);
+  --t: 180ms cubic-bezier(0.4, 0, 0.2, 1);
+  --t-slow: 320ms cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* ---- typography ---- */
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, "Noto Sans", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+}

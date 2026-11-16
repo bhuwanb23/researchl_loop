@@ -1,0 +1,217 @@
+/* ==========================================================================
+   base.css — reset, typography, app shell, and the pipeline arc stepper.
+   ========================================================================== */
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body { height: 100%; }
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.55;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  /* subtle ambient mesh — deep, restrained, never busy */
+  background-image:
+    radial-gradient(900px 500px at 12% -8%, rgba(46, 107, 255, 0.10), transparent 60%),
+    radial-gradient(800px 480px at 92% 0%, rgba(123, 92, 255, 0.08), transparent 55%),
+    radial-gradient(700px 500px at 50% 110%, rgba(46, 107, 255, 0.06), transparent 60%);
+  background-attachment: fixed;
+}
+
+::selection { background: var(--accent-soft); }
+
+h1, h2, h3, h4 { letter-spacing: -0.02em; font-weight: 700; }
+h1 { font-size: 20px; }
+h2 { font-size: 22px; }
+h3 { font-size: 16px; }
+h4 { font-size: 14px; }
+
+p { font-size: 14px; }
+
+.muted { color: var(--text-2); }
+.small { font-size: 13px; }
+.mono { font-family: var(--font-mono); }
+
+/* ---------------------------------------------------------------- top bar */
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 24px;
+  background: rgba(12, 15, 21, 0.78);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+
+.brand { display: flex; align-items: center; gap: 12px; }
+
+.brand-mark {
+  width: 38px; height: 38px;
+  border-radius: 11px;
+  background: var(--accent-grad);
+  display: grid; place-items: center;
+  box-shadow: var(--shadow-glow), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  flex: none;
+}
+.brand-mark svg { width: 22px; height: 22px; }
+
+.brand h1 {
+  font-size: 17px;
+  background: linear-gradient(120deg, #ffffff, #c9d2f5);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.brand-sub { font-size: 12px; color: var(--text-3); margin-top: 1px; }
+
+.topbar-right { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+
+/* ---------------------------------------------------------------- pipeline arc (unique stepper) */
+
+.pipeline {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 14px 24px 10px;
+  max-width: 1080px;
+  width: 100%;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.pipe-node {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  font: inherit;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--text-3);
+  cursor: pointer;
+  padding: 4px 6px;
+  transition: color var(--t);
+}
+
+.pipe-node .dot {
+  width: 30px; height: 30px;
+  border-radius: 9px;
+  display: grid; place-items: center;
+  font-size: 14px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text-3);
+  transition: all var(--t);
+  flex: none;
+}
+
+.pipe-node .label { white-space: nowrap; }
+
+/* active node: glowing accent */
+.pipe-node.active { color: var(--text); }
+.pipe-node.active .dot {
+  background: var(--accent-grad);
+  border-color: transparent;
+  color: #fff;
+  box-shadow: var(--shadow-glow);
+  animation: pulse 2.2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(46, 107, 255, 0.35); }
+  50%      { box-shadow: 0 0 0 7px rgba(46, 107, 255, 0.08); }
+}
+
+/* done node: success */
+.pipe-node.done { color: var(--text-2); }
+.pipe-node.done .dot {
+  background: var(--success-soft);
+  border-color: rgba(51, 199, 123, 0.4);
+  color: var(--success);
+}
+
+/* connector */
+.pipe-seg {
+  height: 2px;
+  flex: 1 1 40px;
+  min-width: 34px;
+  background: var(--border);
+  border-radius: 2px;
+  position: relative;
+  margin: 0 2px;
+}
+.pipe-seg.done::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 2px;
+  background: var(--accent-grad);
+}
+
+/* ---------------------------------------------------------------- layout */
+
+.container {
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 22px 24px 48px;
+  flex: 1;
+  animation: screen-in var(--t-slow) ease-out;
+}
+
+@keyframes screen-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.screen { display: flex; flex-direction: column; gap: 16px; }
+
+.screen-head { padding: 4px 2px 2px; }
+.screen-head h2 { margin-bottom: 4px; }
+.screen-head p { color: var(--text-2); max-width: 620px; }
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.align-end { display: flex; align-items: flex-end; }
+
+.footer {
+  text-align: center;
+  color: var(--text-3);
+  font-size: 12.5px;
+  padding: 16px 24px 22px;
+  border-top: 1px solid var(--border);
+  margin-top: auto;
+}
+
+/* ---------------------------------------------------------------- responsive */
+
+@media (max-width: 760px) {
+  .grid-2 { grid-template-columns: 1fr; }
+  .pipeline { gap: 6px; }
+  .pipe-node .label { display: none; }
+  .pipe-node { padding: 4px; }
+  .pipe-seg { min-width: 20px; }
+  .topbar { padding: 10px 16px; }
+  .container { padding: 16px; }
+  .brand-sub { display: none; }
+}
