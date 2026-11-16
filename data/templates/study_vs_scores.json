@@ -1,0 +1,24 @@
+{
+  "id": "study_vs_scores",
+  "question": "Does study time affect exam scores?",
+  "research_type": "regression",
+  "variables": [
+    {"name": "study_hours", "type": "numeric", "unit": "hours/week"},
+    {"name": "prior_gpa", "type": "numeric", "unit": "grade point avg"},
+    {"name": "sleep_hours", "type": "numeric", "unit": "hours/night"},
+    {"name": "exam_score", "type": "numeric", "unit": "0-100"}
+  ],
+  "suggested_rows": 80,
+  "data_plan": "Generate synthetic student records with study_hours (2-20), prior_gpa (2.0-4.0), sleep_hours (4-9), and exam_score (40-100) where score correlates positively with study_hours and prior_gpa. Label score band (low/med/high) as classification target.",
+  "dataset_name": "study_vs_scores",
+  "mock_ranges": {
+    "study_hours": [2, 20],
+    "prior_gpa": [2.0, 4.0],
+    "sleep_hours": [4, 9],
+    "exam_score": [40, 100]
+  },
+  "refinements": [
+    "Does sleep mediate the effect of study time on exam scores?",
+    "How does prior GPA interact with study time for exam scores?"
+  ]
+}

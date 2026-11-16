@@ -1,0 +1,26 @@
+{
+  "id": "plant_heat_tolerance",
+  "question": "Which local plant species tolerates heat best?",
+  "research_type": "descriptive",
+  "variables": [
+    {"name": "species", "type": "categorical", "unit": "plant species name"},
+    {"name": "avg_leaf_temp", "type": "numeric", "unit": "celsius"},
+    {"name": "water_loss_rate", "type": "numeric", "unit": "mmol H2O / m2 / s"},
+    {"name": "survival_days", "type": "numeric", "unit": "days under heat stress"}
+  ],
+  "suggested_rows": 60,
+  "data_plan": "Generate synthetic greenhouse measurements across 6 local plant species, each with 10 replicate plants: average leaf temperature under heat, water-loss rate, and survival days under controlled heat stress. Use realistic species-specific ranges.",
+  "dataset_name": "plant_heat_tolerance",
+  "mock_ranges": {
+    "avg_leaf_temp": [28, 42],
+    "water_loss_rate": [0.5, 6.0],
+    "survival_days": [10, 90]
+  },
+  "mock_values": {
+    "species": ["Aloe", "Mango", "Tamarind", "Neem", "Palm", "Banana"]
+  },
+  "refinements": [
+    "Which species shows the best trade-off between water loss and survival under heat?",
+    "Does leaf temperature predict survival days across species?"
+  ]
+}

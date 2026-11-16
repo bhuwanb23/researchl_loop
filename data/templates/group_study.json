@@ -1,0 +1,26 @@
+{
+  "id": "group_study",
+  "question": "Do students who study in groups score higher?",
+  "research_type": "survey",
+  "variables": [
+    {"name": "study_mode", "type": "categorical", "unit": "group | solo"},
+    {"name": "weekly_hours", "type": "numeric", "unit": "hours/week"},
+    {"name": "quiz_score", "type": "numeric", "unit": "0-100"},
+    {"name": "satisfaction", "type": "categorical", "unit": "1-5 rating"}
+  ],
+  "suggested_rows": 90,
+  "data_plan": "Generate synthetic survey responses from students: study_mode (group/solo), weekly study hours (1-15), quiz_score (0-100), and satisfaction rating (1-5). Include a modest positive association between group study and quiz_score.",
+  "dataset_name": "group_study",
+  "mock_ranges": {
+    "weekly_hours": [1, 15],
+    "quiz_score": [0, 100],
+    "satisfaction": [1, 5]
+  },
+  "mock_values": {
+    "study_mode": ["group", "solo"]
+  },
+  "refinements": [
+    "Does satisfaction differ between group and solo learners?",
+    "Does the effect of group study persist after controlling for weekly hours?"
+  ]
+}
