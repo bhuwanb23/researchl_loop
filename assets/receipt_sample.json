@@ -1,0 +1,43 @@
+{
+  "_note": "Sample disclosure receipt generated in mock mode (no API keys) \u2014 exactly as produced by POST /api/receipts.",
+  "_generated": "2026-11-16T10:33:40.739232+00:00",
+  "receipt_id": "r_5d787220",
+  "session_id": "demo-receipt-sample",
+  "dataset_id": "d_fc87b764",
+  "fields": {
+    "research_question": "Does study time affect exam scores?",
+    "dataset_source": "invented",
+    "ai_tools_used": [
+      {
+        "tool": "llm-mock",
+        "purpose": "question parsing, dataset generation, methodology draft"
+      },
+      {
+        "tool": "adaption-emulated",
+        "purpose": "adaptive data invention and augmentation"
+      }
+    ],
+    "generated_vs_student": {
+      "generated": "80 rows generated (synthetic: 80) via llm=mock, adaption=emulated",
+      "student": "2 logged student actions (plan_submitted, question_submitted)"
+    },
+    "human_oversight_level": "prompt_guided",
+    "student_contributions": [
+      {
+        "action": "question_submitted",
+        "detail": "Does study time affect exam scores?",
+        "timestamp": "2026-11-16T10:33:40.706488+00:00"
+      },
+      {
+        "action": "plan_submitted",
+        "detail": "Generate synthetic student records with study_hours (2-20), prior_gpa (2.0-4.0), sleep_hours (4-9), and exam_score (40-100) where score correlates positively with study_hours and prior_gpa. Label score band (low/med/high) as classification target.",
+        "timestamp": "2026-11-16T10:33:40.723383+00:00"
+      }
+    ],
+    "sources_consulted": [],
+    "timestamp": "2026-11-16T10:33:40.737300+00:00",
+    "integrity_hash": "sha256:8932ba066c167cf7961e5b1480743bb08635de3ecb7bff5249f703558f461d32"
+  },
+  "format": "json",
+  "variant": "standard"
+}
