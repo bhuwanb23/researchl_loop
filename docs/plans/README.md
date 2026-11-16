@@ -36,7 +36,7 @@ Every phase file (`phase_0.md` … `phase_6.md`) is self-contained and structure
 | **3** | Audit, Receipt & Export | 6–8 | ✅ Complete | F4 Audit · F5 Receipt · F6 Export · F8 variants · F9 source honesty · F11 contribution log |
 | **4** | Frontend | 8–11 | ✅ Complete | 5 screens: Ask → Build → Audit → Receipt → Export (static SPA, no build step) |
 | **5** | Integration, Testing & Demo Assets | 11–14 | ✅ Complete | E2E (mock+augment), spot-check, usability run, demo video, 7 screenshots, receipt sample |
-| **6** | Submission & Final Validation | 14–16 | 🔲 Not started | Devpost submission, final checks, submit by Dec 1 |
+| **6** | Submission & Final Validation | 14–16 | ✅ Complete | Rubric-aligned Devpost submission package, README, final checklist, submission record |
 
 ## 3. Feature → phase mapping (the tracking matrix)
 
@@ -121,6 +121,6 @@ Phase 5 ──► Phase 6 (assets + submission)
 | 3 — Audit, Receipt & Export | ✅ Complete | 100% | F4 before/after audit + interpretations; F5 receipt with SHA-256 hash, mode-accurate tools, no fabricated sources; F6 export bundle (CSV+receipt+methodology); F8 variants; F11 contribution log; 70/71 tests |
 | 4 — Frontend | ✅ Complete | 100% | 5-screen static SPA (vanilla HTML/CSS/JS, served by FastAPI); template picker + editable plan; invent/augment previews; SVG before/after charts; receipt with variants + mode badge; export downloads; F12 tooltips; demo script; 73/74 tests |
 | 5 — Integration & Demo Assets | ✅ Complete | 100% | E2E mock (3 templates) + augment (2 messy CSVs) pass; metrics spot-check matches hand-calc; team-member usability run (~17s flow, quote captured); demo video + 7 screenshots + receipt sample in assets/; 3 bugs fixed; 73/74 tests |
-| 6 — Submission & Final Validation | 🔲 Not started | 0% | — |
+| 6 — Submission & Final Validation | ✅ Complete | 100% | Full Devpost submission copy (docs/devpost/submission.md), root README, final validation checklist (all boxes), submission record with step-by-step + buffer plan |
 
-**Overall: 6/7 phases complete (~86%) — Phases 0–5 validated**
+**Overall: 7/7 phases complete (100%) — Phases 0–6 validated; submission package ready (execution = team's Devpost action)**

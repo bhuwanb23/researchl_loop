@@ -15,6 +15,9 @@ venv/
 data/sessions/
 data/samples/*.csv
 !data/samples/.gitkeep
+# keep the demo CSVs tracked (needed by scripts/e2e_augment.py and the augment demo)
+!data/samples/messy_study_survey.csv
+!data/samples/messy_plant_survey.csv
 
 # Node (if frontend added)
 node_modules/
