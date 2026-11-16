@@ -5,9 +5,9 @@ import importlib
 import pandas as pd
 import pytest
 
-from app import config
-from app.adaption import AdaptionClient, AdaptionError
-from app.llm import MockLLM
+from app.core import config
+from app.ai.adaption import AdaptionClient, AdaptionError
+from app.ai.llm import MockLLM
 
 
 def test_emulated_invent_delegates_and_labels():

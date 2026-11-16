@@ -3,7 +3,7 @@
 import pytest
 from pydantic import ValidationError
 
-from app.schemas import Dataset, DatasetRow, Receipt, ReceiptFields, ScopeResult, Variable
+from app.core.schemas import Dataset, DatasetRow, Receipt, ReceiptFields, ScopeResult, Variable
 
 
 def test_scope_result_requires_contract_fields():

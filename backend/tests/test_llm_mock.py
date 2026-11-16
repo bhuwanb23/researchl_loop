@@ -2,8 +2,8 @@
 
 import pandas as pd
 
-from app.llm import MockLLM
-from app.schemas import ScopeResult
+from app.ai.llm import MockLLM
+from app.core.schemas import ScopeResult
 
 QUESTIONS = {
     "study_vs_scores": "Does study time affect exam scores?",

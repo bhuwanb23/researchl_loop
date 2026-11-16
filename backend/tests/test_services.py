@@ -7,10 +7,11 @@ import io
 import pandas as pd
 import pytest
 
-from app import quality, services
-from app.llm import MockLLM
-from app.schemas import ScopeResult, Variable
-from app.storage import Storage
+from app.engine import quality
+from app.services import services
+from app.ai.llm import MockLLM
+from app.core.schemas import ScopeResult, Variable
+from app.core.storage import Storage
 
 QUESTIONS = {
     "study_vs_scores": "Does study time affect exam scores?",

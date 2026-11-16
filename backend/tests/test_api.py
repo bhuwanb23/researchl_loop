@@ -12,9 +12,9 @@ import pandas as pd
 import pytest
 from fastapi.testclient import TestClient
 
-from app import config
+from app.core import config
 from app.main import app
-from app.schemas import InventRequest, ScopeRequest
+from app.core.schemas import InventRequest, ScopeRequest
 
 client = TestClient(app)
 

@@ -8,11 +8,12 @@ import pandas as pd
 import pytest
 from fastapi.testclient import TestClient
 
-from app import quality, services
+from app.engine import quality
+from app.services import services
 from app.main import app
-from app.receipt import compute_integrity_hash, render_variant, verify_integrity
-from app.schemas import Dataset, DatasetRow, Provenance, Receipt
-from app.storage import Storage
+from app.ai.receipt import compute_integrity_hash, render_variant, verify_integrity
+from app.core.schemas import Dataset, DatasetRow, Provenance, Receipt
+from app.core.storage import Storage
 
 client = TestClient(app)
 

@@ -5,7 +5,7 @@ import os
 
 import pytest
 
-from app import config
+from app.core import config
 
 
 def test_defaults_load_without_env(monkeypatch):

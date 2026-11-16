@@ -1,7 +1,7 @@
 """1.6 — Storage: round-trip preserves rows, provenance, metadata."""
 
-from app.schemas import Dataset, DatasetRow
-from app.storage import Storage
+from app.core.schemas import Dataset, DatasetRow
+from app.core.storage import Storage
 
 
 def _make_dataset(session_id: str = "sess-test", dataset_id: str = "d-test") -> Dataset:
@@ -51,7 +51,7 @@ def test_load_missing_returns_none(tmp_path):
 
 
 def test_receipt_roundtrip(tmp_path):
-    from app.schemas import Receipt, ReceiptFields
+    from app.core.schemas import Receipt, ReceiptFields
 
     store = Storage(session_dir=tmp_path)
     receipt = Receipt(
